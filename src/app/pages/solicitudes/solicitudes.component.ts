@@ -187,6 +187,7 @@ export class SolicitudesComponent implements OnInit {
   }
 
   cargarDatosExcelC(datos) {
+    this.SolicitudesExcel = [];
     datos.forEach(d => {
 
       var contendoresSolicitados = '';

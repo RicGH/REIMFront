@@ -171,16 +171,25 @@ export class ContenedoresLRComponent implements OnInit {
   CreaDatosExcel(datos) {
     this.lavadoExcel = [];
     datos.forEach(b => {
+
+      var reparaciones = '';
+
+      b.reparaciones.forEach(r => {
+        reparaciones += r.reparacion + ", ";
+      });
+
+      reparaciones = reparaciones.substring(0, reparaciones.length - 2);
+
       var buque = {
-        Naviera: b.naviera && b.naviera.nombreComercial && b.naviera.nombreComercial != undefined && b.naviera.nombreComercial != '' && b.naviera.nombreComercial,
+        Naviera: b.viaje && b.viaje.naviera.nombreComercial && b.viaje.naviera.nombreComercial != undefined && b.viaje.naviera.nombreComercial != '' ? b.viaje.naviera.nombreComercial: '' && b.viaje.naviera.nombreComercial,
         Contenedor: b.contenedor,
         Tipo: b.tipo,
         Estatus: b.estado,
         Cliente: b.cliente && b.cliente.nombreComercial && b.cliente.nombreComercial != undefined && b.cliente.nombreComercial != '' && b.cliente.nombreComercial,
-        A_A: b.aa,
+        Agencia: b.agencia && b.agencia.nombreComercial && b.agencia.nombreComercial != undefined && b.agencia.nombreComercial != '' && b.agencia.nombreComercial,
         Lavado: b.lavado,
-        Reparación: b.reparaciones,
-        Grado: b.Grado
+        Reparación: reparaciones,
+        Grado: b.grado
         
       };
       this.lavadoExcel.push(buque);

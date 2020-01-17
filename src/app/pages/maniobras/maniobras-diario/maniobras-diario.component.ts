@@ -145,6 +145,15 @@ export class ManiobrasDiarioComponent implements OnInit {
   CreaDatosExcel(datos) {
     this.ManiobrasExcel = [];
     datos.forEach(m => {
+
+      var reparaciones = '';
+
+      m.reparaciones.forEach(r => {
+        reparaciones += r.reparacion + ", ";
+      });
+
+      reparaciones = reparaciones.substring(0, reparaciones.length - 2);
+
       var maniobra = {
         CargaDescarga: m.cargaDescarga,
         Contenedor: m.contenedor,
@@ -153,13 +162,13 @@ export class ManiobrasDiarioComponent implements OnInit {
         LavadoObservacion: m.lavadoObservacion,
         Grado: m.grado,
         FLlegada: m.fLlegada != undefined ? m.fLlegada.substring(0, 10) : '',
-        Operador: m.operador,
+        Operador: m.operador && m.operador.nombre && m.operador.nombre != undefined && m.operador.nombre && m.operador.nombre != ''? m.operador.nombre: '' && m.operador.nombre,
         Placa: m.camion != undefined ? m.camion.placa : '',
         Transportista: m.transportista && m.transportista.nombreComercial && m.transportista.nombreComercial != undefined && m.transportista.nombreComercial != '' ? m.transportista.nombreComercial: '' && m.transportista.nombreComercial,
-        Reparaciones: m.reparaciones,
+        Reparaciones: reparaciones,
         ReparacionesObservacion: m.reparacionesObservacion,
         FacturaManiobra: m.facturaManiobra,
-        Viaje: m.viaje && m.viaje.viaje && m.viaje != undefined && m.viaje.viaje != ''? m.viaje.viaje: '' && m.viaje.viaje,
+        Viaje: m.viaje && m.viaje.viaje && m.viaje.viaje != undefined && m.viaje.viaje != ''? m.viaje.viaje: '' && m.viaje.viaje,
         Buque: m.viaje && m.viaje.buque.nombre && m.viaje.buque.nombre != undefined && m.viaje.buque.nombre != '' ? m.viaje.buque.nombre: '' && m.viaje.buque.nombre,
         Peso: m.peso,
         Naviera: m.viaje && m.viaje.naviera.nombreComercial && m.viaje.naviera.nombreComercial != undefined && m.viaje.naviera.nombreComercial != '' ? m.viaje.naviera.nombreComercial: '' && m.viaje.naviera.nombreComercial,

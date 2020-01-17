@@ -135,7 +135,8 @@ export class ViajesComponent implements OnInit {
     datos.forEach(b => {
       var buque = {
         Viaje: b.viaje,
-        Nombre_Buque: b.viaje && b.buque.nombre && b.buque.nombre != undefined && b.buque.nombre != '' ? b.buque.nombre : '' && b.buque.nombre,
+        Naviera: b.naviera && b.naviera.nombreComercial && b.naviera.nombreComercial != undefined && b.naviera.nombreComercial != '' ? b.naviera.nombreComercial: '' && b.naviera.nombreComercial,
+        Buque: b.viaje && b.buque.nombre && b.buque.nombre != undefined && b.buque.nombre != '' ? b.buque.nombre : '' && b.buque.nombre,
         Fecha_Arribo: b.fArribo.substring(0, 10),
         Vijencia_Temporal: b.fVigenciaTemporal.substring(0, 10),
         Año: b.anio

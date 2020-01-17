@@ -62,7 +62,7 @@ export class AprobacionesComponent implements OnInit {
   totalRegistrosDescargas = 0;
   totalRegistrosCargas = 0;
 
-  constructor(public _solicitudesService: SolicitudService,private excelService: ExcelService) { }
+  constructor(public _solicitudesService: SolicitudService, private excelService: ExcelService) { }
 
   ngOnInit() {
     this.cargaSolicitudes('D');
@@ -159,6 +159,7 @@ export class AprobacionesComponent implements OnInit {
 
 
   CreaDatosExcel(datos) {
+    this.aprobacionesExcel = [];
     datos.forEach(b => {
       var buque = {
         //Id: b._id,
@@ -168,7 +169,7 @@ export class AprobacionesComponent implements OnInit {
         Naviera: b.naviera && b.naviera.nombreComercial && b.naviera.nombreComercial != undefined && b.naviera.nombreComercial != '' && b.naviera.nombreComercial,
         Cliente: b.cliente && b.cliente.nombreComercial && b.cliente.nombreComercial != undefined && b.cliente.nombreComercial != '' && b.cliente.nombreComercial,
         Viaje: b.viaje && b.viaje.viaje && b.viaje.viaje != undefined && b.viaje.viaje != '' ? b.viaje.viaje : '' && b.viaje.viaje,
-        Nombre_Buque: b.viaje.buque && b.viaje.buque != undefined && b.viaje.buque.nombre != '' ? b.viaje.buque.nombre : '' && b.viaje.buque.nombre,
+        Buque: b.viaje && b.buque.nombre && b.buque.nombre != undefined && b.buque.nombre != '' ? b.buque.nombre : '' && b.buque.nombre,
         Observaciones: b.observaciones,
         Estatus: b.estatus,
       };
@@ -186,6 +187,7 @@ export class AprobacionesComponent implements OnInit {
   }
 
   CreaDatosExcelC(datos) {
+    this.aprobacionesExcel = [];
     datos.forEach(b => {
       var buque = {
         //Id: b._id,
