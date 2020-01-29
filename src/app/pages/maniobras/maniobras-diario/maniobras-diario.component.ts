@@ -70,7 +70,7 @@ export class ManiobrasDiarioComponent implements OnInit {
     this.consultaManiobras().then((value: { ok: Boolean, mensaje: String }) => { });
   }
 
-  consultaManiobras() {
+  consultaManiobras() { 
     this.cargando = true;
     return new Promise((resolve, reject) => {
       this._maniobraService.getManiobras(null, null, null, null, null, null,null, null, null, null,
